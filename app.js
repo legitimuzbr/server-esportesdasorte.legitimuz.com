@@ -1,7 +1,8 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'https://esportesdasorte.legitimuz.com');
@@ -16,7 +17,6 @@ app.use(express.urlencoded({ extended: true }));
 mongoose.connect('mongodb+srv://mateus:mZ4RBNdxAkLzO9I4@legitimuz.hpaophu.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Conexão com MongoDB estabelecida com sucesso'))
   .catch(err => console.error('Não foi possível conectar ao MongoDB:', err));
-
 
 app.set('view engine', 'ejs');
 
