@@ -38,24 +38,24 @@ app.post('/user', async (req, res) => {
       
       const now = new Date();
       const lastAction = user.lastAction ? new Date(user.lastAction) : new Date(0);
-      const minutesSinceLastAction = (now - lastAction) / (1000 * 60);
-
-      if (minutesSinceLastAction < 1) {
-        const remainingTimeMs = (1 * 60 * 1000) - (now - lastAction);
-        const remainingMinutes = Math.floor(remainingTimeMs / (1000 * 60));
-        const remainingSeconds = Math.floor((remainingTimeMs % (1000 * 60)) / 1000);
-
-        const timeLeftFormatted = `${remainingMinutes}m ${remainingSeconds}s`;
-        
+      const hoursSinceLastAction = (now - lastAction) / (1000 * 60 * 60); // Horas desde a última ação
+    
+      if (hoursSinceLastAction < 24) { // Alterado para 24 horas
+        const remainingTimeMs = (24 * 60 * 60 * 1000) - (now - lastAction); // Tempo restante em milissegundos
+        const remainingHours = Math.floor(remainingTimeMs / (1000 * 60 * 60)); // Horas restantes
+        const remainingMinutes = Math.floor((remainingTimeMs % (1000 * 60 * 60)) / (1000 * 60)); // Minutos restantes
+    
+        const timeLeftFormatted = `${remainingHours}h ${remainingMinutes}m`; // Exibição de horas e minutos
+            
         return res.status(200).json({ canVerify: false, message: 'Ação bloqueada', timeLeft: timeLeftFormatted });
       } else {
         user.lastAction = now;
         await user.save();
-        buttonElement = `<button class="btn btn-light w-100 btn-lg" id="legitimuz-action-verify">Iniciar verificação</button>`
+        buttonElement = `<button class="btn btn-light w-100 btn-lg" id="legitimuz-action-verify">Iniciar verificação</button>`;
         return res.status(200).json({ canVerify: true, buttonElement: buttonElement, user });
       }
-    
     }
+    
 
     const newUser = new User({ cpf, lastAction: new Date() });
     await newUser.save();

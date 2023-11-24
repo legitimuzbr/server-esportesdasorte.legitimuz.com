@@ -13,7 +13,7 @@ const nameInput = document.getElementById('legitimuz-hydrate-name');
 
       const cpf = document.getElementById("legitimuz-hydrate-cpf").value
 
-      fetch('/user', {
+      fetch('https://sdk-api.legitimuz.com.br/user', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
