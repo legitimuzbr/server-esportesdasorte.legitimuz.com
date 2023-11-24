@@ -3,12 +3,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const port = process.env.PORT || 3000;
-const cors = require('cors'); 
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-app.use(cors());
 
 mongoose.connect('mongodb+srv://mateus:mZ4RBNdxAkLzO9I4@legitimuz.hpaophu.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Conexão com MongoDB estabelecida com sucesso'))
