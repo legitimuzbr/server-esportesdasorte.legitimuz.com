@@ -28,10 +28,10 @@ app.get('/', (req, res) => {
 });
 
 app.post('/user', async (req, res) => {
-  const { cpf } = req.body; // Assume que o CPF é enviado no corpo da requisição
+  const { cpf } = req.body;
 
   try {
-    // Verifique se o usuário já existe
+
     const user = await User.findOne({ cpf });
 
     if (user) {
