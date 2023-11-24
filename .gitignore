@@ -1,0 +1,74 @@
+# Dependências
+/node_modules
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Arquivos de Runtime
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Diretório de cobertura de testes
+/coverage
+
+# Arquivo de configuração de cobertura de testes nyc
+.nyc_output
+
+# Arquivos de ambiente
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Arquivos de despejo
+*.dump
+
+# Compilados
+build/
+dist/
+*.tsbuildinfo
+
+# Arquivos de cache
+.cache/
+.temp/
+
+# Diretórios de instalação do IDE
+/.idea/
+/.vscode/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+
+# Diretórios de empacotamento do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Arquivos de configuração do editor de texto
+*.spl
+*.swp
+*.swo
+
+# Outros
+*.tar.gz
+*.zip
+*.rar
+*.tar
+*.7z
+*.log
+*.sql
+*.sqlite
+
+# Arquivos gerados durante a execução
+/tmp
+
+# Arquivos de banco de dados local
+*.sqlite3
+
+# Arquivo de chave privada
+*.pem

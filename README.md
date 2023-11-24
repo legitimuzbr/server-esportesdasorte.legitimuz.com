@@ -1,1 +1,0 @@
-# server-esportesdasorte.legitimuz.com

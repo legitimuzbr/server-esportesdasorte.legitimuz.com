@@ -1,0 +1,24 @@
+{
+  "name": "server-esportesdasorte.legitimuz.com",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/legitimuzbr/server-esportesdasorte.legitimuz.com.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/legitimuzbr/server-esportesdasorte.legitimuz.com/issues"
+  },
+  "homepage": "https://github.com/legitimuzbr/server-esportesdasorte.legitimuz.com#readme",
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2"
+  }
+}
