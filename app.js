@@ -3,6 +3,13 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const port = process.env.PORT || 3000;
+const cors = require('cors'); 
+
+app.use(cors({
+  origin: 'https://esportesdasorte.legitimuz.com',
+  methods: 'GET, POST, PUT, DELETE',
+  allowedHeaders: 'Content-Type, Authorization',
+}));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
