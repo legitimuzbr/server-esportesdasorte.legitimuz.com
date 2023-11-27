@@ -1,6 +1,6 @@
 const legitimuz = Legitimuz({
   host: "https://api.legitimuz.com",
-  token: "7a893ced-4ab7-4dec-8e9e-9bf33db1cc80"
+  token: "c2bf534c-4bfd-4a0f-a22a-a9a8e560ae60"
 });
 
 legitimuz.mount();
