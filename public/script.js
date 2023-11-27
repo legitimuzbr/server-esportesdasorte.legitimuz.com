@@ -29,12 +29,13 @@ const nameInput = document.getElementById('legitimuz-hydrate-name');
         })
         .then((data) => {
           if (!data.canVerify) {
+            console.log(data)
             console.log('Não autorizado');
             document.querySelector("#aviso").classList.remove("d-none");
             document.querySelector("#contador").innerText = `Tente novamente em: ${data.timeLeft}`;
           } else {
             console.log('Autorizado');
-            
+            console.log(data)
             document.getElementById("botao").innerHTML = data.buttonElement;
             legitimuz.mount()
 

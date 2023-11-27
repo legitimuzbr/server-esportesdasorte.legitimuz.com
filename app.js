@@ -63,11 +63,12 @@ app.post('/user', async (req, res) => {
       }
     }
     
+    const buttonElement = `<button class="btn btn-light w-100 btn-lg" id="legitimuz-action-verify">Iniciar verificação</button>`;
 
     const newUser = new User({ cpf, lastAction: new Date() });
     await newUser.save();
 
-    res.status(201).json({ canVerify: true, user: newUser });
+    res.status(201).json({ canVerify: true, buttonElement: buttonElement, user: newUser });
 
   } catch (error) {
 
