@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 const cors = require('cors'); 
 
 app.use(cors({
@@ -41,29 +41,27 @@ app.post('/user', async (req, res) => {
 
     const user = await User.findOne({ cpf });
 
+    buttonElement = `<button class="btn btn-light w-100 btn-lg" id="legitimuz-action-verify">Iniciar verificação</button>`
+
     if (user) {
       
       const now = new Date();
       const lastAction = user.lastAction ? new Date(user.lastAction) : new Date(0);
-      const hoursSinceLastAction = (now - lastAction) / (1000 * 60 * 60); // Horas desde a última ação
+      const hoursSinceLastAction = (now - lastAction) / (1000 * 60 * 60);
     
-      if (hoursSinceLastAction < 24) { // Alterado para 24 horas
-        const remainingTimeMs = (24 * 60 * 60 * 1000) - (now - lastAction); // Tempo restante em milissegundos
-        const remainingHours = Math.floor(remainingTimeMs / (1000 * 60 * 60)); // Horas restantes
-        const remainingMinutes = Math.floor((remainingTimeMs % (1000 * 60 * 60)) / (1000 * 60)); // Minutos restantes
-    
-        const timeLeftFormatted = `${remainingHours}h ${remainingMinutes}m`; // Exibição de horas e minutos
+      if (hoursSinceLastAction < 24) {
+        const remainingTimeMs = (24 * 60 * 60 * 1000) - (now - lastAction); 
+        const remainingHours = Math.floor(remainingTimeMs / (1000 * 60 * 60)); 
+        const remainingMinutes = Math.floor((remainingTimeMs % (1000 * 60 * 60)) / (1000 * 60)); 
+        const timeLeftFormatted = `${remainingHours}h ${remainingMinutes}m`;
             
         return res.status(200).json({ canVerify: false, message: 'Ação bloqueada', timeLeft: timeLeftFormatted });
       } else {
         user.lastAction = now;
         await user.save();
-        buttonElement = `<button class="btn btn-light w-100 btn-lg" id="legitimuz-action-verify">Iniciar verificação</button>`;
         return res.status(200).json({ canVerify: true, buttonElement: buttonElement, user });
       }
     }
-    
-    const buttonElement = `<button class="btn btn-light w-100 btn-lg" id="legitimuz-action-verify">Iniciar verificação</button>`;
 
     const newUser = new User({ cpf, lastAction: new Date() });
     await newUser.save();
